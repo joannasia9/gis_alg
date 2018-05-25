@@ -2,26 +2,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Graph {
-    private final int v;
-    private int e;
+    private final int vertices;
+    private int edges;
     private List<Edge>[] adjacencyLists;
 
-    @SuppressWarnings("unchecked")
-    public Graph(int v) {
-        this.v = v;
-        this.e = 0;
-        this.adjacencyLists = (List<Edge>[]) new List[v];
-        for (int i = 0; i < v; i++) {
+
+    public Graph(int vertices) {
+        this.vertices = vertices;
+        this.edges = 0;
+        this.adjacencyLists = (List<Edge>[]) new List[vertices];
+        for (int i = 0; i < vertices; i++) {
             adjacencyLists[i] = new ArrayList<>();
         }
     }
 
     public int getNumberOfEdges() {
-        return e;
+        return edges;
     }
 
     public int getNumberOfVertices() {
-        return v;
+        return vertices;
     }
 
     public void addEdge(Edge edge) {
@@ -29,7 +29,7 @@ public class Graph {
         int w = edge.getEndVertex(v);
         adjacencyLists[v].add(edge);
         adjacencyLists[w].add(edge);
-        e++;
+        edges++;
     }
 
     public Iterable<Edge> getAdjacencyList(int v) {
