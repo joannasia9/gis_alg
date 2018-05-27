@@ -6,17 +6,22 @@ public class Prim {
     private PriorityQueue<Edge> adjacencyEdges;
     private long weight;
     private int v;
+    private int time;
+    private Graph graph;
 
     public Prim(Graph graph) {
         v = graph.getNumberOfVertices();
+        this.graph = graph;
+    }
+
+    public void primMST(){
+        long timeStart = System.currentTimeMillis();
         visitedVertices = new boolean[v];
         minSpanningTree = new ArrayDeque<>();
         adjacencyEdges = new PriorityQueue<>(v);
 
 
         Random rand = new Random();
-
-        long timeStart = System.currentTimeMillis();
         int randV = rand.nextInt(v - 1);
 
         // Oznacz wierzchołek jako odwiedzony
@@ -35,7 +40,7 @@ public class Prim {
 
             minSpanningTree.push(edge);
 
-            weight += edge.getWeight(); // dodaj wagę krawędzi do sumy
+            //   weight += edge.getWeight(); // dodaj wagę krawędzi do sumy
 
             if (!visitedVertices[startVertex]) {
                 visitVertex(graph, startVertex);
@@ -46,8 +51,12 @@ public class Prim {
         }
 
         long timeStop = System.currentTimeMillis();
-        System.out.println("CZAS WYKONYWANIA I PROGRAMU WYNIÓSŁ: "+ (timeStop-timeStart) + " milisekund");
 
+        time += (timeStop-timeStart);
+    }
+
+    public void showTime(int iterations){
+        System.out.println("CZAS WYKONYWANIA ALGORYTMU PRIMA WYNIÓSŁ: "+ (time/iterations) + " milisekund");
     }
 
     public Iterable<Edge> edges() {

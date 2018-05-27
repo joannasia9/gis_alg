@@ -40,4 +40,8 @@ public class Edge implements Comparable<Edge> {
         }
         return 0;
     }
+
+    public long getEndV() {
+        return endVertex;
+    }
 }
